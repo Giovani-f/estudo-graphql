@@ -5,7 +5,8 @@ const typeDefs = gql`
     id: ID!
     name: String!
     age: Int!
-    dev: Boolean!
+    dev: Boolean!,
+    archived: Boolean!
   }
 
   input UserInput {

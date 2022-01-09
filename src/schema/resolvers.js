@@ -12,15 +12,15 @@ const resolvers = {
   Mutation: {
     async createUser(_, args) {
       console.log('args', args)
-      const { name, age, dev } = args.input;
+      const newUser = args.input;
 
       await knex('users').insert({
-        name,
-        age,
-        dev
-      })
+        name: newUser.name,
+        age: newUser.age,
+        dev: newUser.dev
+      }).returning('*');
 
-      return { name, age, dev }
+      return newUser;
     }
   }
 }

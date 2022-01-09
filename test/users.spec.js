@@ -24,14 +24,47 @@ describe('User', () => {
           {
             age: 20,
             dev: true,
-            name: "Giovani",
+            name: 'Giovani',
           },
           {
             age: 20,
             dev: false,
-            name: "Giovanna",
+            name: 'Giovanna',
           }
         ]
+      })
+    })
+
+    test('when making a post with the correct user, the user must return', async () => {
+      const response = await request(app)
+        .post('/graphql')
+        .send({
+          query: `#graphql
+            mutation($input: UserInput) {
+              createUser(input: $input) {
+                name,
+                age,
+                dev
+              }
+            },
+          `,
+          variables : {
+            input: {
+              name: 'Teste',
+              age: 26,
+              dev: false
+            }
+          }
+        })
+        .set('Accept', 'application/json')
+
+      expect(response.body.errors).toBeFalsy()
+      expect(response.body.data).toEqual({
+        createUser: {
+          name: 'Teste',
+          age: 26,
+          dev: false
+        }
       })
     })
 
