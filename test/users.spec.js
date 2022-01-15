@@ -16,7 +16,7 @@ describe('User', () => {
               dev
             }
           }
-          `,
+          `
         })
         .set('Accept', 'application/json')
 
@@ -49,7 +49,7 @@ describe('User', () => {
               }
             },
           `,
-          variables : {
+          variables: {
             input: {
               name: 'Teste',
               email: 'teste@teste.com.br',
@@ -87,7 +87,7 @@ describe('User', () => {
               }
             },
           `,
-          variables : {
+          variables: {
             input: {
               id: '4f894eba-db64-4a1d-a80d-66ec56e7bf78',
               name: 'Giovanna renomeada',
@@ -124,8 +124,8 @@ describe('User', () => {
               }
             },
           `,
-          variables : {
-            id: '2f520e47-6936-4a86-8ba1-5aebd8a39831',
+          variables: {
+            id: '2f520e47-6936-4a86-8ba1-5aebd8a39831'
           }
         })
         .set('Accept', 'application/json')

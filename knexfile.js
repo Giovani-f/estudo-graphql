@@ -1,3 +1,4 @@
+const path = require('path')
 require('dotenv').config()
 
 module.exports = {
@@ -13,15 +14,15 @@ module.exports = {
       min: 0,
       max: 1,
       afterCreate: function (conn, callback) {
-        conn.query(`SET timezone="UTC"; CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`, callback)
+        conn.query('SET timezone="UTC"; CREATE EXTENSION IF NOT EXISTS "uuid-ossp";', callback)
       }
     },
     migrations: {
       tableName: 'knex_migrations',
-      directory: `${__dirname}/migrations`
+      directory: path.join(__dirname, '/migrations')
     },
     seeds: {
-      directory: `${__dirname}/seeds`
+      directory: path.join(__dirname, '/seeds')
     }
   }
-};
+}

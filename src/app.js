@@ -1,11 +1,11 @@
-const { ApolloServer } = require('apollo-server-express');
-const express = require('express');
+const { ApolloServer } = require('apollo-server-express')
+const express = require('express')
 const { typeDefs } = require('./schema/typeDefs')
 const { resolvers } = require('./schema/resolvers')
 const { makeExecutableSchema } = require('@graphql-tools/schema')
 const { constraintDirective, constraintDirectiveTypeDefs } = require('graphql-constraint-directive')
 
-const app = express();
+const app = express()
 
 let schema = makeExecutableSchema({
   typeDefs: [
@@ -16,14 +16,14 @@ let schema = makeExecutableSchema({
 })
 schema = constraintDirective()(schema)
 
-async function startApolloServer() {
+async function startApolloServer () {
   const server = new ApolloServer({
     schema,
     playground: true
-  });
+  })
 
   await server.start()
-  server.applyMiddleware({ app });
+  server.applyMiddleware({ app })
 }
 
 startApolloServer()

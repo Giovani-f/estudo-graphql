@@ -10,7 +10,7 @@ const resolvers = {
   },
 
   Mutation: {
-    async createUser(_, { input }) {
+    async createUser (_, { input }) {
       const user = {
         name: input.name,
         email: input.email,
@@ -18,12 +18,12 @@ const resolvers = {
         dev: input.dev
       }
 
-      const [createdUser] = await knex('users').insert(user).returning('*');
+      const [createdUser] = await knex('users').insert(user).returning('*')
 
-      return createdUser;
+      return createdUser
     },
 
-    async updateUser(_, { input }) {
+    async updateUser (_, { input }) {
       const user = {}
 
       if (input.name) { user.name = input.name }
@@ -31,15 +31,15 @@ const resolvers = {
       if (input.age) { user.age = input.age }
       if (input.dev) { user.dev = input.dev }
 
-      const [updatedUser] = await knex('users').update(user).where({ id: input.id }).returning('*');
+      const [updatedUser] = await knex('users').update(user).where({ id: input.id }).returning('*')
 
       return updatedUser
     },
 
-    async deleteUser(_, args) {
-      const id = args.id;
+    async deleteUser (_, args) {
+      const id = args.id
 
-      const [deletedUser] = await knex('users').update({ archived: true }).where({ id: id}).returning('*');
+      const [deletedUser] = await knex('users').update({ archived: true }).where({ id: id }).returning('*')
 
       return deletedUser
     }
